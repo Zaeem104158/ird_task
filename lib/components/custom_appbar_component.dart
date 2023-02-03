@@ -81,15 +81,18 @@ class CustomeAppbarComponent extends StatelessWidget {
               ],
             ),
             (profileImage != null || profileImage != "")
-                ? ImageViewComponent(
-                    imageUrl: profileImage,
-                    placeHolderIcon: placeHolderIcon!,
-                    borderColor: kProfileCircleAvaterBorderColor,
-                    isLocalAsset: true,
-                    boxFit: BoxFit.fill,
-                    imageRadius: 50,
-                    width: 40.0,
-                    height: 40.0,
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                    child: ImageViewComponent(
+                      imageUrl: profileImage,
+                      placeHolderIcon: placeHolderIcon!,
+                      borderColor: kProfileCircleAvaterBorderColor,
+                      isLocalAsset: true,
+                      boxFit: BoxFit.fill,
+                      imageRadius: 50,
+                      width: 50.0,
+                      height: 50.0,
+                    ),
                   )
                 : const SizedBox(),
           ],

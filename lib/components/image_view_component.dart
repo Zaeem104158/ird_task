@@ -90,6 +90,7 @@ class ImageViewComponent extends StatelessWidget {
       return SvgPicture.asset(
         imageUrl ?? placeHolderIcon,
         color: isLocalAssetSvgColor,
+        fit: BoxFit.fill,
       );
     } else {
       if (isNetworkAssetSvg) {
