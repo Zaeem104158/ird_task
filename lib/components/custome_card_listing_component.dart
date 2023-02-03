@@ -61,7 +61,10 @@ class CustomeCardListingComponent extends StatelessWidget {
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.all(Radius.circular(cardBorderRadius)),
-            border: Border.all(color: cardBorderColor, width: 2.0),
+            border: Border.all(
+              color: cardBorderColor,
+              // width: 2.0,
+            ),
           ),
           child: Row(
             children: [

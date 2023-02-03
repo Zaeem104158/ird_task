@@ -83,8 +83,7 @@ class HomePage extends StatelessWidget {
                     subTitlePadding: const EdgeInsets.only(
                         left: 10, right: 10, top: 0, bottom: 0),
                     titleColor: kWhiteColor,
-                    subTitle:
-                        watchVideoSubTitle,
+                    subTitle: watchVideoSubTitle,
                     subTitleColor: kWhiteColor,
                     isWatchButtonExist: true,
                     isButtonExistText: watchVideo,
@@ -105,25 +104,30 @@ class HomePage extends StatelessWidget {
                         isTranslatable: false,
                         color: kWhiteColor,
                         font: interFont,
-                        fontWeight: regularFontWeight,
-                        fontSize: smallerFontSize,
+                        fontWeight: titleFontWeight,
+                        fontSize: noDataFoundRegularFontSize,
                         textAlign: TextAlign.left,
+                        lineHeight: k23LineHeight,
                       ),
                       SizedBox(
-                        width: SizeConfig.getScreenWidth(context) / 1.8,
+                        width: SizeConfig.getScreenWidth(context) / 1.9,
                       ),
                       GestureDetector(
-                          onTap: () {},
-                          child: TextComponent(
-                           seeAll,
-                            padding: EdgeInsets.zero,
-                            isTranslatable: false,
-                            color: kWhiteColor.withOpacity(0.7),
-                            font: interFont,
-                            fontWeight: regularFontWeight,
-                            fontSize: smallerFontSize,
-                            textAlign: TextAlign.right,
-                          ))
+                        onTap: () {},
+                        child: TextComponent(
+                          seeAll,
+                          padding: EdgeInsets.zero,
+                          isTranslatable: false,
+                          color: kWhiteColor.withOpacity(
+                            0.7,
+                          ),
+                          font: interFont,
+                          fontWeight: regularFontWeight,
+                          fontSize: smallerFontSize,
+                          lineHeight: k19LineHeight,
+                          textAlign: TextAlign.right,
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -143,8 +147,8 @@ class HomePage extends StatelessWidget {
                             backgroundColor: kWhiteColor,
                             title: taskList[index].taskName,
                             subTitle: "$saveDate : ${taskList[index].date}",
-                            titleColor: kTextColor,
-                            subTitleColor: kTextColor,
+                            titleColor: kPrimaryColor,
+                            subTitleColor: kPrimaryColor,
                             titlePadding: const EdgeInsets.only(
                                 left: 5, right: 10, top: 0, bottom: 0),
                             subTitlePadding: const EdgeInsets.only(
@@ -169,10 +173,11 @@ class HomePage extends StatelessWidget {
                           allTask,
                           padding: EdgeInsets.zero,
                           isTranslatable: false,
-                          color: kTextColor,
+                          color: kPrimaryColor,
                           font: interFont,
-                          fontWeight: regularFontWeight,
-                          fontSize: smallerFontSize,
+                          fontWeight: titleFontWeight,
+                          fontSize: noDataFoundRegularFontSize,
+                          lineHeight: k23LineHeight,
                           textAlign: TextAlign.left,
                         ),
                         SizedBox(
@@ -184,12 +189,13 @@ class HomePage extends StatelessWidget {
                             seeAll,
                             padding: EdgeInsets.zero,
                             isTranslatable: false,
-                            color: kTextColor.withOpacity(
+                            color: kPrimaryColor.withOpacity(
                               0.7,
                             ),
                             font: interFont,
                             fontWeight: regularFontWeight,
                             fontSize: smallerFontSize,
+                            lineHeight: k19LineHeight,
                             textAlign: TextAlign.right,
                           ),
                         )
