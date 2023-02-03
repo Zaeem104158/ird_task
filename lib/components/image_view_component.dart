@@ -4,9 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../utils/asset_const.dart';
 
-
 class ImageViewComponent extends StatelessWidget {
-
   final double? width;
   final double imageRadius;
   final BoxFit? boxFit;
@@ -21,6 +19,7 @@ class ImageViewComponent extends StatelessWidget {
   final Color backgroundColor;
   final double backgroundRadius;
   final double backgroundColorOpacity;
+  final Color? isLocalAssetSvgColor;
   final VoidCallback? onPressed;
 
   const ImageViewComponent({
@@ -40,33 +39,36 @@ class ImageViewComponent extends StatelessWidget {
     this.placeHolderIcon = userPlaceholderAsset,
     this.backgroundColor = Colors.transparent,
     this.backgroundColorOpacity = 0.0,
+    this.isLocalAssetSvgColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return onPressed != null ?
-    GestureDetector(
-      child: _getImageViewWidget(),
-      onTap: onPressed,
-    ) :
-    _getImageViewWidget();
+    return onPressed != null
+        ? GestureDetector(
+            child: _getImageViewWidget(),
+            onTap: onPressed,
+          )
+        : _getImageViewWidget();
   }
 
   Widget _getImageViewWidget() {
     return Container(
       height: height,
       width: width,
-      decoration: borderColor != null ? BoxDecoration(
-        color: backgroundColor.withOpacity(backgroundColorOpacity),
-        borderRadius: BorderRadius.all(
-          Radius.circular(backgroundRadius),
-        ),
-        border: Border.all(
-          color: borderColor!,
-          width: borderWidth,
-        ),
-      ) : null,
-      child:  ClipRRect(
+      decoration: borderColor != null
+          ? BoxDecoration(
+              color: backgroundColor.withOpacity(backgroundColorOpacity),
+              borderRadius: BorderRadius.all(
+                Radius.circular(backgroundRadius),
+              ),
+              border: Border.all(
+                color: borderColor!,
+                width: borderWidth,
+              ),
+            )
+          : null,
+      child: ClipRRect(
         borderRadius: BorderRadius.all(
           Radius.circular(imageRadius),
         ),
@@ -76,17 +78,24 @@ class ImageViewComponent extends StatelessWidget {
   }
 
   Widget _loadImage() {
-    if(isLocalAsset) {
+    if (isLocalAsset) {
       return FadeInImage(
         placeholder: AssetImage(placeHolderIcon),
         fit: boxFit,
-        image: AssetImage(imageUrl ?? placeHolderIcon),
+        image: AssetImage(
+          imageUrl ?? placeHolderIcon,
+        ),
       );
     } else if (isLocalAssetSvg) {
-      return SvgPicture.asset(imageUrl ?? placeHolderIcon,);
+      return SvgPicture.asset(
+        imageUrl ?? placeHolderIcon,
+        color: isLocalAssetSvgColor,
+      );
     } else {
-      if(isNetworkAssetSvg) {
-        return SvgPicture.network(imageUrl ?? placeHolderIcon,);
+      if (isNetworkAssetSvg) {
+        return SvgPicture.network(
+          imageUrl ?? placeHolderIcon,
+        );
       } else {
         return CachedNetworkImage(
           imageUrl: imageUrl ?? placeHolderIcon,

@@ -27,6 +27,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Video.svg
   String get video => 'assets/icons/Video.svg';
 
+  /// File path: assets/icons/play_icon.svg
+  String get playIcon => 'assets/icons/play_icon.svg';
+
+  /// File path: assets/icons/todo_list_icon.svg
+  String get todoListIcon => 'assets/icons/todo_list_icon.svg';
+
   /// File path: assets/icons/visibility_eye_off_icon.svg
   String get visibilityEyeOffIcon => 'assets/icons/visibility_eye_off_icon.svg';
 
@@ -40,6 +46,8 @@ class $AssetsIconsGen {
         search,
         setting,
         video,
+        playIcon,
+        todoListIcon,
         visibilityEyeOffIcon,
         visibleEyeIcon
       ];

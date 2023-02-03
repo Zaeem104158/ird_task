@@ -42,7 +42,7 @@ const k21LineHeight = 28.0;
 const k20LineHight = 20.0;
 const k19LineHeight = 12.0;
 const k18LineHeight = 36.0;
-
+const k17LineHeight = 14.0;
 /*Colors*/
 
 const kPrimaryColor = Color(0xFF042E2B);

@@ -6,6 +6,7 @@ import 'package:ird_task/components/text_component.dart';
 import 'package:ird_task/gen/assets.gen.dart';
 import 'package:ird_task/utils/size_config.dart';
 import 'package:ird_task/utils/style.dart';
+import 'dart:math' as math;
 
 class CustomeCardComponent extends StatelessWidget {
   final double? height;
@@ -13,16 +14,20 @@ class CustomeCardComponent extends StatelessWidget {
   final EdgeInsets padding;
   final Color? backgroundColor;
   final String? title;
+  final Color titleColor;
+  final Color subTitleColor;
   final String? subTitle;
   final bool? isWatchButtonExist;
   final String? cardLogo;
   final double cardBorderRadius;
   final Color cardBorderColor;
   final String? isButtonExistText;
-  final Color isButtonExistTextColor;
-  final Color isButtonExistBorderColor;
-  final double isButtonExistBorderRadius;
-
+  final String? isButtonPrefixIcon;
+  final String? leadingCardIcon;
+  final bool isLeadingCardIconOnTopExist;
+  final bool isLocalAsset;
+  final EdgeInsets titlePadding;
+  final EdgeInsets subTitlePadding;
   const CustomeCardComponent({
     Key? key,
     this.padding = const EdgeInsets.fromLTRB(15, 24, 15, 24),
@@ -32,13 +37,18 @@ class CustomeCardComponent extends StatelessWidget {
     this.cardBorderRadius = 8.0,
     this.title,
     this.subTitle,
+    this.titleColor = kWhiteColor,
+    this.subTitleColor = kWhiteColor,
+    this.titlePadding = const EdgeInsets.all(15),
+    this.subTitlePadding = const EdgeInsets.all(15),
     this.isWatchButtonExist = false,
     this.cardLogo,
     this.cardBorderColor = kGrayColor,
     this.isButtonExistText = "",
-    this.isButtonExistBorderColor = kTextColor,
-    this.isButtonExistBorderRadius = 8,
-    this.isButtonExistTextColor = kGrayColor,
+    this.isButtonPrefixIcon,
+    this.isLeadingCardIconOnTopExist = false,
+    this.leadingCardIcon,
+    this.isLocalAsset = false,
   });
 
   @override
@@ -56,17 +66,40 @@ class CustomeCardComponent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            isLeadingCardIconOnTopExist == true
+                ? ImageViewComponent(
+                    imageUrl: leadingCardIcon,
+                    isLocalAssetSvg: isLocalAsset,
+                    height: 70,
+                    width: 70,
+                    imageRadius: 0,
+                    boxFit: BoxFit.fill,
+                    //isLocalAssetSvgColor: Colors.red,
+                  )
+                : const SizedBox(
+                    height: 0,
+                  ),
             TextComponent(
               title,
-              padding: EdgeInsets.zero,
+              isTranslatable: false,
+              textAlign: TextAlign.start,
+              padding: titlePadding,
+              color: titleColor,
               font: interFont,
-              fontSize: 8,
+              fontWeight: titleFontWeight,
+              fontSize: noDataFoundRegularFontSize,
+              lineHeight: k17LineHeight,
             ),
             TextComponent(
               subTitle,
-              padding: EdgeInsets.zero,
+              isTranslatable: false,
+              textAlign: TextAlign.start,
+              padding: subTitlePadding,
+              color: subTitleColor.withOpacity(0.7),
               font: interFont,
-              fontSize: 8,
+              fontWeight: regularFontWeight,
+              fontSize: smallerFontSize,
+              lineHeight: k23LineHeight,
             ),
             isWatchButtonExist == true
                 ? Row(
@@ -76,21 +109,26 @@ class CustomeCardComponent extends StatelessWidget {
                         text: isButtonExistText,
                         isTranslate: false,
                         onPressed: () {},
-                        borderColor: isButtonExistBorderColor,
-                        borderRadius: isButtonExistBorderRadius,
-                        textColor: isButtonExistTextColor,
-                        buttonColor: kCardButtomBackgroundColor,
-                        width: 150,
-                        padding: EdgeInsets.all(15),
-                        stylePadding: EdgeInsets.zero,
-                        fontSize: 15,
-                        fontWeight: regularFontWeight,
+                        borderColor: kSubTitleTextColor,
+                        borderRadius: 70,
+                        textColor: kWhiteColor,
+                        buttonColor:
+                            kProfileCircleAvaterBorderColor.withOpacity(0.6),
+                        width: SizeConfig.getScreenWidth(context) / 2.5,
+                        padding: const EdgeInsets.all(15),
+                        stylePadding: const EdgeInsets.all(10),
+                        fontSize: noDataFoundRegularFontSize,
+                        fontWeight: titleFontWeight,
+                        isLocalAssetSvg: true,
+                        prefixImageUrl: isButtonPrefixIcon,
+                        prefixIconWidth: 12,
+                        prefixIconHeight: 12,
                       ),
                       ImageViewComponent(
                         imageUrl: cardLogo,
                         placeHolderIcon: Assets.images.placeHolderIcon.path,
-                        height: 60,
-                        width: 60,
+                        height: 75,
+                        width: 80,
                         borderColor: Colors.transparent,
                         backgroundColor: Colors.transparent,
                         backgroundRadius: 0.0,
@@ -99,28 +137,6 @@ class CustomeCardComponent extends StatelessWidget {
                       )
                     ],
                   )
-                //  Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       Expanded(
-                //         child: ButtonComponent(
-                //           text: isButtonExistText,
-                //           isTranslate: false,
-                //           onPressed: () {},
-                //           borderColor: isButtonExistBorderColor,
-                //           borderRadius: isButtonExistBorderRadius,
-                //           textColor: isButtonExistTextColor,
-                //           buttonColor: kCardButtomBackgroundColor,
-                //         ),
-                //       ),
-                //       // ImageViewComponent(
-                //       //   imageUrl: cardLogo,
-                //       //   placeHolderIcon: Assets.images.placeHolderIcon.path,
-                //       //   height: 10,
-                //       //   width: 10,
-                //       // )
-                //     ],
-                //   )
                 : const SizedBox(),
           ],
         ),

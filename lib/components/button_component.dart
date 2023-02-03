@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../utils/style.dart';
 
 class ButtonComponent extends StatelessWidget {
-
   final String? text;
   final String font;
   final double? width;
@@ -25,6 +24,7 @@ class ButtonComponent extends StatelessWidget {
   final double borderRadius;
   final FontWeight? fontWeight;
   final double? prefixIconWidth;
+  final double? prefixIconHeight;
   final VoidCallback? onPressed;
   final Color borderColor;
 
@@ -40,6 +40,7 @@ class ButtonComponent extends StatelessWidget {
     this.isTranslate = true,
     required this.onPressed,
     this.prefixIconWidth = 30,
+    this.prefixIconHeight = 30,
     this.minimumSize = Size.zero,
     this.isLocalAssetSvg = false,
     this.width = double.infinity,
@@ -48,8 +49,16 @@ class ButtonComponent extends StatelessWidget {
     this.fontWeight = mediumFontWeight,
     this.fontSize = buttonTextFontSize,
     this.borderColor = kPrimaryColor,
-    this.padding = const EdgeInsets.fromLTRB(48, 24, 48, 24,),
-    this.stylePadding = const EdgeInsets.symmetric(horizontal: 0, vertical: 11.5,),
+    this.padding = const EdgeInsets.fromLTRB(
+      48,
+      24,
+      48,
+      24,
+    ),
+    this.stylePadding = const EdgeInsets.symmetric(
+      horizontal: 0,
+      vertical: 11.5,
+    ),
   }) : super(key: key);
 
   @override
@@ -58,87 +67,96 @@ class ButtonComponent extends StatelessWidget {
       padding: padding,
       child: SizedBox(
         width: width,
-        child: (prefixImageUrl != null || prefixIcon != null) ?
-        ElevatedButton.icon(
-          icon: _getPrefixIcon(),
-          label: Padding(
-            padding: const EdgeInsets.only(left: 5, right: 5,),
-            child: Text(
-              isTranslate ? text?.tr() ?? "" : text ?? "",
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          onPressed: onPressed,
-          style: ElevatedButton.styleFrom(
-            elevation: elevation,
-            primary: buttonColor,
-            onPrimary: textColor,
-            shape: borderSide != null ?
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius),
-                side: borderSide!,
-            ) :
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius),
-            ),
-            padding: stylePadding,
-            textStyle: GoogleFonts.getFont(
-              font,
-              fontWeight: fontWeight,
-              color: textColor,
-              fontSize: fontSize,
-            ),
-          ),
-        ) :
-        ElevatedButton(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 5, right: 5,),
-            child: Text(
-              isTranslate ? text?.tr() ?? "" : text ?? "",
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          onPressed: onPressed,
-          style: ElevatedButton.styleFrom(
-            elevation: elevation,
-            primary: buttonColor,
-            onPrimary: textColor,
-            minimumSize: minimumSize,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius),
-            ),
-            padding: stylePadding,
-            textStyle: GoogleFonts.getFont(
-              font,
-              fontWeight: fontWeight,
-              color: textColor,
-              fontSize: fontSize,
-            ),
-          ),
-        ),
+        child: (prefixImageUrl != null || prefixIcon != null)
+            ? ElevatedButton.icon(
+                icon: _getPrefixIcon(),
+                label: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 5,
+                    right: 5,
+                  ),
+                  child: Text(
+                    isTranslate ? text?.tr() ?? "" : text ?? "",
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                onPressed: onPressed,
+                style: ElevatedButton.styleFrom(
+                  elevation: elevation,
+                  primary: buttonColor,
+                  onPrimary: textColor,
+                  shape: borderSide != null
+                      ? RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(borderRadius),
+                          side: borderSide!,
+                        )
+                      : RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(borderRadius),
+                        ),
+                  padding: stylePadding,
+                  textStyle: GoogleFonts.getFont(
+                    font,
+                    fontWeight: fontWeight,
+                    color: textColor,
+                    fontSize: fontSize,
+                  ),
+                ),
+              )
+            : ElevatedButton(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 5,
+                    right: 5,
+                  ),
+                  child: Text(
+                    isTranslate ? text?.tr() ?? "" : text ?? "",
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                onPressed: onPressed,
+                style: ElevatedButton.styleFrom(
+                  elevation: elevation,
+                  primary: buttonColor,
+                  onPrimary: textColor,
+                  minimumSize: minimumSize,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(borderRadius),
+                  ),
+                  padding: stylePadding,
+                  textStyle: GoogleFonts.getFont(
+                    font,
+                    fontWeight: fontWeight,
+                    color: textColor,
+                    fontSize: fontSize,
+                  ),
+                ),
+              ),
       ),
     );
   }
 
   Widget _getPrefixIcon() {
-    if(prefixIcon != null) {
+    if (prefixIcon != null) {
       return prefixIcon!;
     } else {
       return Padding(
-        padding: const EdgeInsets.only(right: 16,),
-        child: isLocalAssetSvg ?
-        SvgPicture.asset(
-          prefixImageUrl!,
-          width: prefixIconWidth,
-        ) :
-        Image.asset(
-          prefixImageUrl!,
-          width: prefixIconWidth,
+        padding: const EdgeInsets.only(
+          right: 8,
         ),
+        child: isLocalAssetSvg
+            ? SvgPicture.asset(
+                prefixImageUrl!,
+                width: prefixIconWidth,
+                height: prefixIconHeight,
+              )
+            : Image.asset(
+                prefixImageUrl!,
+                width: prefixIconWidth,
+              ),
       );
     }
   }
