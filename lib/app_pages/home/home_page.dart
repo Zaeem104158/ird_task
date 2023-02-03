@@ -7,7 +7,10 @@ import 'package:ird_task/components/custome_card_listing_component.dart';
 import 'package:ird_task/components/custum_background_component.dart';
 import 'package:ird_task/components/text_component.dart';
 import 'package:ird_task/gen/assets.gen.dart';
+import 'package:ird_task/model/todo_task_model.dart';
+import 'package:ird_task/model/user_model.dart';
 import 'package:ird_task/utils/size_config.dart';
+import 'package:ird_task/utils/strings.dart';
 import 'package:ird_task/utils/style.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,7 +36,6 @@ class HomePage extends StatelessWidget {
                   height: SizeConfig.getScreenHeight(context) / 2.0,
                   width: SizeConfig.getScreenWidth(context),
                   child: const CustomBackgroundComponent(
-                    // height: SizeConfig.getScreenHeight(context) / 2.0,
                     linearGradientColor: kPrimaryLinerColor,
                     bottomLeft: 20.0,
                     bottomRight: 20.0,
@@ -75,17 +77,17 @@ class HomePage extends StatelessWidget {
                     backgroundColor: kCardButtomBackgroundColor,
                     cardBorderColor: kCardButtomBackgroundColor,
                     cardBorderRadius: 15,
-                    title: "Welcome to TickTick Task",
+                    title: watchVideoTitle,
                     titlePadding: const EdgeInsets.only(
                         left: 10, right: 10, top: 15, bottom: 15),
                     subTitlePadding: const EdgeInsets.only(
                         left: 10, right: 10, top: 0, bottom: 0),
                     titleColor: kWhiteColor,
                     subTitle:
-                        "Your one-stop app for task management. Simplify, track, and accomplish tasks with ease.",
+                        watchVideoSubTitle,
                     subTitleColor: kWhiteColor,
                     isWatchButtonExist: true,
-                    isButtonExistText: "Watch Video",
+                    isButtonExistText: watchVideo,
                     isButtonPrefixIcon: Assets.icons.playIcon,
                     cardLogo: Assets.images.todoImage.path,
                   ),
@@ -98,7 +100,7 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const TextComponent(
-                        "Reminder Task",
+                        reminderTask,
                         padding: EdgeInsets.zero,
                         isTranslatable: false,
                         color: kWhiteColor,
@@ -113,7 +115,7 @@ class HomePage extends StatelessWidget {
                       GestureDetector(
                           onTap: () {},
                           child: TextComponent(
-                            "Seel All",
+                           seeAll,
                             padding: EdgeInsets.zero,
                             isTranslatable: false,
                             color: kWhiteColor.withOpacity(0.7),
@@ -140,7 +142,7 @@ class HomePage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 15),
                             backgroundColor: kWhiteColor,
                             title: taskList[index].taskName,
-                            subTitle: "Save Date: ${taskList[index].date}",
+                            subTitle: "$saveDate : ${taskList[index].date}",
                             titleColor: kTextColor,
                             subTitleColor: kTextColor,
                             titlePadding: const EdgeInsets.only(
@@ -164,7 +166,7 @@ class HomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         const TextComponent(
-                          "All Tasks",
+                          allTask,
                           padding: EdgeInsets.zero,
                           isTranslatable: false,
                           color: kTextColor,
@@ -179,7 +181,7 @@ class HomePage extends StatelessWidget {
                         GestureDetector(
                           onTap: () {},
                           child: TextComponent(
-                            "Seel All",
+                            seeAll,
                             padding: EdgeInsets.zero,
                             isTranslatable: false,
                             color: kTextColor.withOpacity(
@@ -211,7 +213,7 @@ class HomePage extends StatelessWidget {
                                 vertical: 10, horizontal: 15),
                             backgroundColor: kWhiteColor,
                             title: "${taskList[index].taskName} $index",
-                            subTitle: "Save Date: ${taskList[index].date}",
+                            subTitle: "$saveDate : ${taskList[index].date}",
                             titleColor: kPrimaryColor,
                             subTitleColor: kPrimaryColor,
                             titlePadding: const EdgeInsets.only(left: 15),
@@ -224,18 +226,4 @@ class HomePage extends StatelessWidget {
               ],
             )));
   }
-}
-
-class TodoTask {
-  final String? taskName;
-  final String? date;
-
-  TodoTask({this.taskName, this.date});
-}
-
-class User {
-  final String? name;
-  final String? userProfileImage;
-
-  User({this.name, this.userProfileImage});
 }

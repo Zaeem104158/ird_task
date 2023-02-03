@@ -36,7 +36,7 @@ class ImageViewComponent extends StatelessWidget {
     this.isLocalAssetSvg = false,
     this.isNetworkAssetSvg = false,
     this.backgroundRadius = 100,
-    this.placeHolderIcon = userPlaceholderAsset,
+     this.placeHolderIcon = userPlaceholderAsset,
     this.backgroundColor = Colors.transparent,
     this.backgroundColorOpacity = 0.0,
     this.isLocalAssetSvgColor,

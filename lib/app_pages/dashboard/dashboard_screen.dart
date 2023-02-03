@@ -6,6 +6,7 @@ import 'package:ird_task/app_pages/save/save_page.dart';
 import 'package:ird_task/app_pages/search/search_page.dart';
 import 'package:ird_task/app_pages/setting/setting_page.dart';
 import 'package:ird_task/gen/assets.gen.dart';
+import 'package:ird_task/utils/strings.dart';
 import 'package:ird_task/utils/style.dart';
 
 class DashBoardPage extends StatefulWidget {
@@ -64,7 +65,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           Assets.icons.home,
                           color: kBottomBarDisableColor,
                         ),
-                  label: 'Home'),
+                  label: kDashBoardLableHome),
               _bottomNavigationBarItem(
                   icon: selectedPage == 1
                       ? SvgPicture.asset(
@@ -75,7 +76,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           Assets.icons.search,
                           color: kBottomBarDisableColor,
                         ),
-                  label: 'Search'),
+                  label: kDashBoardLableSearch),
               _bottomNavigationBarItem(
                   icon: selectedPage == 2
                       ? SvgPicture.asset(Assets.icons.video,
@@ -84,7 +85,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           Assets.icons.video,
                           color: kBottomBarDisableColor,
                         ),
-                  label: 'Record'),
+                  label: kDashBoardLableRecord),
               _bottomNavigationBarItem(
                   icon: selectedPage == 3
                       ? SvgPicture.asset(Assets.icons.save,
@@ -93,7 +94,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           Assets.icons.save,
                           color: kBottomBarDisableColor,
                         ),
-                  label: 'Saved'),
+                  label: kDashBoardLableSaved),
               _bottomNavigationBarItem(
                   icon: selectedPage == 4
                       ? SvgPicture.asset(Assets.icons.setting,
@@ -102,7 +103,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           Assets.icons.setting,
                           color: kBottomBarDisableColor,
                         ),
-                  label: 'Setting'),
+                  label: kDashBoardLableSetting),
             ],
             onTap: (index) {
               setState(() {
